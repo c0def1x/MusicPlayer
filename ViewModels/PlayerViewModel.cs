@@ -128,7 +128,7 @@ namespace AudioBeta1._0.ViewModels
             get => selectedTrack;
             set 
             { 
-                selectedTrack = value; 
+                selectedTrack = value;
                 trackAuthor = selectedTrack.Author; 
                 trackImage = selectedTrack.Photo;
                 trackName = selectedTrack.Title;
@@ -198,7 +198,7 @@ namespace AudioBeta1._0.ViewModels
 
         public TimeSpan TrackDuration
         {
-            get { return trackDuration; }
+            get => trackDuration;
             set { trackDuration = value; }
         }
     }

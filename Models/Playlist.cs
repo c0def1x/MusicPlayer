@@ -23,8 +23,13 @@ namespace AudioBeta1._0.Models
             { 
                 Author = mpFile.Tag.Artists.First(), 
                 Title = mpFile.Tag.Title, Path = filename, 
-                Photo=image, Duration = duration
-            });
+                Photo=image, Duration = StripMilliseconds(duration)
+            });;
+        }
+
+        public static TimeSpan StripMilliseconds(TimeSpan time)
+        {
+            return new TimeSpan(time.Hours,time.Minutes, time.Seconds);
         }
     }
 }

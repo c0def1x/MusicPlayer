@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AudioBeta1._0"
-        xmlns:converter="clr-namespace:AudioBeta1._0.Converters"
         xmlns:vm="clr-namespace:AudioBeta1._0.ViewModels"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -12,9 +11,6 @@
     <Window.DataContext>
         <vm:PlayerViewModel/>
     </Window.DataContext>
-    <Window.Resources>
-        <converter:TimespanToDouble x:Key="DurationConverter"/>
-    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="330"/>
@@ -22,11 +18,11 @@
         </Grid.ColumnDefinitions>
         <Border BorderBrush="BlueViolet" BorderThickness="3">
             <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="300"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
                 <Border Width="230" Height="230" BorderBrush="BlueViolet" BorderThickness="3">
                     <Image Source="{Binding TrackImage,UpdateSourceTrigger=PropertyChanged}" Stretch="Fill"></Image>
                 </Border>
@@ -35,7 +31,7 @@
                     <LineBreak/>
                     <Run Text="{Binding TrackAuthor,UpdateSourceTrigger=PropertyChanged}"></Run>
                 </TextBlock>
-                <ProgressBar Minimum="0" Maximum="{Binding TrackDuration, UpdateSourceTrigger=PropertyChanged,Mode=OneWay, Converter={StaticResource DurationConverter}}" Grid.Row="1" VerticalAlignment="Bottom"  Width="250"/>
+                <ProgressBar Minimum="0" Maximum="{Binding TrackDuration, UpdateSourceTrigger=PropertyChanged,Mode=OneWay, Converter={StaticResource durationConverter}}" Grid.Row="1" VerticalAlignment="Bottom"  Width="250"/>
                 <TextBlock Margin="40 0 0 0" Grid.Row="2">00:00</TextBlock>
                 <TextBlock Margin="0 0 40 0" Grid.Row="2" HorizontalAlignment="Right" Text="{Binding TrackDuration, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
@@ -52,7 +48,6 @@
             </Grid>
         </Border>
         <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="3">
-            
             <DockPanel  Grid.Column="1">
                 <StackPanel Margin="0 0 20 0" HorizontalAlignment="Right" Height="60" Orientation="Horizontal" DockPanel.Dock="Bottom">
                     <Button Command="{Binding RemoveTrack}" >Удалить</Button>
@@ -72,8 +67,6 @@
                     </ListBox>
                 </Border>
             </DockPanel>
-            
         </Border>
     </Grid>
-    
 </Window>
