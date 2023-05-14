@@ -10,5 +10,6 @@ namespace AudioBeta1._0.Models
         public BitmapImage Photo { get; set; }
         public string Path { get; set; }
         public TimeSpan Duration { get; set; }
+        public TimeSpan CurrentPosition { get; set; }
     }
 }

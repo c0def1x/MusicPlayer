@@ -23,7 +23,7 @@ namespace AudioBeta1._0.Models
             { 
                 Author = mpFile.Tag.Artists.First(), 
                 Title = mpFile.Tag.Title, Path = filename, 
-                Photo=image, Duration = StripMilliseconds(duration)
+                Photo=image, Duration = StripMilliseconds(duration), CurrentPosition = TimeSpan.Zero,
             });;
         }
 

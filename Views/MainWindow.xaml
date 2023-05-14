@@ -31,7 +31,7 @@
                     <LineBreak/>
                     <Run Text="{Binding TrackAuthor,UpdateSourceTrigger=PropertyChanged}"></Run>
                 </TextBlock>
-                <ProgressBar Minimum="0" Maximum="{Binding TrackDuration, UpdateSourceTrigger=PropertyChanged,Mode=OneWay, Converter={StaticResource durationConverter}}" Grid.Row="1" VerticalAlignment="Bottom"  Width="250"/>
+                <Slider Value="{Binding TrackCurrentPosition}" Minimum="0" Maximum="{Binding TrackDuration, UpdateSourceTrigger=PropertyChanged,Mode=OneWay, Converter={StaticResource durationConverter}}" Grid.Row="1" VerticalAlignment="Bottom"  Width="250"/>
                 <TextBlock Margin="40 0 0 0" Grid.Row="2">00:00</TextBlock>
                 <TextBlock Margin="0 0 40 0" Grid.Row="2" HorizontalAlignment="Right" Text="{Binding TrackDuration, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
@@ -58,9 +58,14 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
-                                    <Run Text="{Binding Title}"></Run>
-                                    <Run Text=" "></Run>
-                                    <Run Text="{Binding Author}"></Run>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Photo}" Height="50" Width="50" Margin="0 0 10 0"></Image>
+                                        <TextBlock VerticalAlignment="Center">
+                                            <Run Text="{Binding Title}"></Run>
+                                            <LineBreak/>
+                                            <Run Text="{Binding Author}"></Run>
+                                        </TextBlock>
+                                    </StackPanel>
                                 </TextBlock>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

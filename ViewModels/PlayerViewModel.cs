@@ -54,25 +54,23 @@ namespace AudioBeta1._0.ViewModels
                     SelectedIndexTrack++;
                     OnPropertyChanged(nameof(SelectedIndexTrack));
                     PlayOrPause = "Pause";
-                    OnPropertyChanged(nameof(PlayOrPause));
-                    selectedTrack = Playlist.TracksPlayList[SelectedIndexTrack];
                     OnPropertyChanged(nameof(selectedTrack));
                     player.Open(new Uri(selectedTrack.Path, UriKind.Relative));
+                    OnPropertyChanged(nameof(PlayOrPause));
                     player.Play();
                 }
             });
             PreviousTrack = new RelayCommand(obj =>
             {
-                if (SelectedIndexTrack > 0)
+                if (SelectedIndexTrack >= 0)
                 {
                     player.Close();
                     SelectedIndexTrack--;
                     OnPropertyChanged(nameof(SelectedIndexTrack));
                     PlayOrPause = "Pause";
-                    OnPropertyChanged(nameof(PlayOrPause));
-                    selectedTrack = Playlist.TracksPlayList[SelectedIndexTrack];
                     OnPropertyChanged(nameof(selectedTrack));
                     player.Open(new Uri(selectedTrack.Path, UriKind.Relative));
+                    OnPropertyChanged(nameof(PlayOrPause));
                     player.Play();
                 }
             });
@@ -110,7 +108,7 @@ namespace AudioBeta1._0.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Плейлист пуст!");
+                    MessageBox.Show("Выберите трек");
                 }
             });
         }
@@ -133,11 +131,13 @@ namespace AudioBeta1._0.ViewModels
                 trackImage = selectedTrack.Photo;
                 trackName = selectedTrack.Title;
                 trackDuration = selectedTrack.Duration;
+                trackCurrentPosition = 0;
 
                 OnPropertyChanged(nameof(trackAuthor));
                 OnPropertyChanged(nameof(trackImage));
                 OnPropertyChanged(nameof(trackName));
                 OnPropertyChanged(nameof(trackDuration));
+                OnPropertyChanged(nameof(trackCurrentPosition));
             }
         }
 
@@ -200,6 +200,14 @@ namespace AudioBeta1._0.ViewModels
         {
             get => trackDuration;
             set { trackDuration = value; }
+        }
+
+        private double trackCurrentPosition;
+
+        public double TrackCurrentPosition
+        {
+            get => trackCurrentPosition;
+            set { trackCurrentPosition = value; }
         }
     }
 }
